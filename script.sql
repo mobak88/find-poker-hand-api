@@ -4,7 +4,10 @@ USE finn_hand_app;
 
 CREATE TABLE hands (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    hand_rank INT NOT NULL,
+    hand_description VARCHAR(30) NOT NULL
+
 );
 
 CREATE TABLE cards (

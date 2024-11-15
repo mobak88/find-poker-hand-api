@@ -12,8 +12,9 @@ const url = process.env.URL || "localhost";
 const port = process.env.PORT || 3000;
 
 export const cardDeck = createCardDeck(suits, cards);
+app.use(express.json());
 
-app.use("/", pokerHandRoutes);
+app.use("/api", pokerHandRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript");

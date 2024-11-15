@@ -19,3 +19,13 @@ export type SameCardOccurencesReturnType = {
   threeOfAKind: number;
   fourOfAKind: number;
 };
+
+export type CardDeckArrayType = {
+  hands: Array<CardDeckType>;
+};
+
+export type WinnerType = {
+  hand: string;
+  rank: number;
+  cards: CardDeckType;
+};

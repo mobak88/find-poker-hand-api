@@ -12,7 +12,10 @@ describe("evaluateHand", () => {
 
     const straightFlushHandResult = evaluateHand(straightFlushHand);
 
-    expect(straightFlushHandResult).toBe("straight-flush");
+    expect(straightFlushHandResult).toStrictEqual({
+      hand: "straight-flush",
+      rank: 1,
+    });
 
     const fourOfAKindHand = [
       { card: "4s", value: 4, suit: "spar" },
@@ -24,7 +27,10 @@ describe("evaluateHand", () => {
 
     const fourOfAKindHandResult = evaluateHand(fourOfAKindHand);
 
-    expect(fourOfAKindHandResult).toBe("four-of-a-kind");
+    expect(fourOfAKindHandResult).toStrictEqual({
+      hand: "four-of-a-kind",
+      rank: 2,
+    });
 
     const house = [
       { card: "4s", value: 4, suit: "spar" },
@@ -36,7 +42,10 @@ describe("evaluateHand", () => {
 
     const houseResult = evaluateHand(house);
 
-    expect(houseResult).toBe("full-house");
+    expect(houseResult).toStrictEqual({
+      hand: "full-house",
+      rank: 3,
+    });
 
     const flushHand = [
       { card: "4r", value: 4, suit: "ruter" },
@@ -48,7 +57,10 @@ describe("evaluateHand", () => {
 
     const flushHandResult = evaluateHand(flushHand);
 
-    expect(flushHandResult).toBe("flush");
+    expect(flushHandResult).toStrictEqual({
+      hand: "flush",
+      rank: 4,
+    });
 
     const straightHand = [
       { card: "4r", value: 4, suit: "ruter" },
@@ -60,7 +72,10 @@ describe("evaluateHand", () => {
 
     const straightHandResult = evaluateHand(straightHand);
 
-    expect(straightHandResult).toBe("straight");
+    expect(straightHandResult).toStrictEqual({
+      hand: "straight",
+      rank: 5,
+    });
 
     const threeOfAKindHand = [
       { card: "6s", value: 6, suit: "spar" },
@@ -72,7 +87,10 @@ describe("evaluateHand", () => {
 
     const threeOfAKindHandResult = evaluateHand(threeOfAKindHand);
 
-    expect(threeOfAKindHandResult).toBe("three-of-a-kind");
+    expect(threeOfAKindHandResult).toStrictEqual({
+      hand: "three-of-a-kind",
+      rank: 6,
+    });
 
     const twoPairsHand = [
       { card: "4s", value: 4, suit: "spar" },
@@ -84,7 +102,10 @@ describe("evaluateHand", () => {
 
     const twoPairsHandResult = evaluateHand(twoPairsHand);
 
-    expect(twoPairsHandResult).toBe("two-pairs");
+    expect(twoPairsHandResult).toStrictEqual({
+      hand: "two-pairs",
+      rank: 7,
+    });
 
     const pairHand = [
       { card: "4s", value: 4, suit: "spar" },
@@ -96,7 +117,10 @@ describe("evaluateHand", () => {
 
     const pairHandResult = evaluateHand(pairHand);
 
-    expect(pairHandResult).toBe("pair");
+    expect(pairHandResult).toStrictEqual({
+      hand: "pair",
+      rank: 8,
+    });
 
     const higCardHand = [
       { card: "4h", value: 4, suit: "ruter" },
@@ -108,6 +132,9 @@ describe("evaluateHand", () => {
 
     const higCardHandResult = evaluateHand(higCardHand);
 
-    expect(higCardHandResult).toBe("high-card");
+    expect(higCardHandResult).toStrictEqual({
+      hand: "high-card",
+      rank: 9,
+    });
   });
 });
