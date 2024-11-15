@@ -1,10 +1,10 @@
-import { CardDeckType } from "../types/types";
+import { CardDeckType, SameCardOccurencesReturnType } from "../types/types";
 
 export const isFlush = (suits: Array<string>): boolean => {
   return suits.every((suit) => suit === suits[0]);
 };
 
-export const isStraight = (cards: CardDeckType) => {
+export const isStraight = (cards: CardDeckType): boolean => {
   let sortedCards = cards.sort((a, b) => a.value - b.value);
 
   if (
@@ -32,11 +32,16 @@ export const isStraight = (cards: CardDeckType) => {
   return true;
 };
 
-export const isStraightFlush = (isStraight: boolean, isFlush: boolean) => {
+export const isStraightFlush = (
+  isStraight: boolean,
+  isFlush: boolean
+): boolean => {
   return isStraight && isFlush ? true : false;
 };
 
-export const countSameCardOccurrences = (cards: CardDeckType) => {
+export const countSameCardOccurrences = (
+  cards: CardDeckType
+): SameCardOccurencesReturnType => {
   const valueCounts: Record<number, number> = {};
 
   cards.forEach((card) => {
@@ -60,7 +65,7 @@ export const countSameCardOccurrences = (cards: CardDeckType) => {
   return { pairs, threeOfAKind, fourOfAKind };
 };
 
-export const findHighCard = (cards: CardDeckType) => {
+export const findHighCard = (cards: CardDeckType): number => {
   const cardNumbers = cards.map((card) => card.value);
   return Math.max(...cardNumbers);
 };
