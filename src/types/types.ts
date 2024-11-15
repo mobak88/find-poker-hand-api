@@ -13,3 +13,9 @@ export type CardDeckType = Array<{
   value: number;
   suit: string;
 }>;
+
+export type SameCardOccurencesReturnType = {
+  pairs: number;
+  threeOfAKind: number;
+  fourOfAKind: number;
+};

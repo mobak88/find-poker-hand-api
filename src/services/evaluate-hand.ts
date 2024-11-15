@@ -8,7 +8,7 @@ import {
 } from "../utils/hand-evaluators";
 import { handRankings } from "../variables/possible-hands";
 
-export const evaluateHand = (cards: CardDeckType) => {
+export const evaluateHand = (cards: CardDeckType): string => {
   const hasStraight = isStraight(cards);
   const hasFlush = isFlush(getSuits(cards));
 
@@ -25,7 +25,7 @@ export const evaluateHand = (cards: CardDeckType) => {
   const { pairs, threeOfAKind, fourOfAKind } = countSameCardOccurrences(cards);
 
   if (fourOfAKind) {
-    return fourOfAKind;
+    return handRankings.fourOfAKind;
   } else if (pairs === 1 && threeOfAKind === 1) {
     return handRankings.fullHouse;
   } else if (threeOfAKind === 1) {
