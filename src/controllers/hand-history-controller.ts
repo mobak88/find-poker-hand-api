@@ -1,21 +1,27 @@
 import { Request, Response } from "express";
-import { ResultSetHeader } from "mysql2";
 import db from "../config/db";
+import { HandsRow } from "../types/types";
+import { FieldPacket } from "mysql2";
+import { groupeHands } from "../utils/group-hands";
 
 export const getPreviousHandsController = async (
   req: Request,
   res: Response
 ) => {
   try {
-    const [result] = await db.query<ResultSetHeader>(
-      "INSERT INTO hands () VALUES ()"
+    const [rows]: [HandsRow[], FieldPacket[]] = await db.query<HandsRow[]>(
+      "SELECT hands.id, hands.created_at, hands.hand_description, cards.card, cards.value, cards.suit FROM hands JOIN cards ON cards.hand_id = hands.id"
     );
 
-    const handId = result.insertId;
+    if (Array.isArray(rows) && rows.length < 1) {
+      res.status(404).json({ message: "No hands found" });
+    }
 
-    res.send({ handId });
+    const handsArray = groupeHands(rows);
+
+    res.status(200).json(handsArray);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Serverfeil" });
+    res.status(500).json({ message: "Server error" });
   }
 };

@@ -1,6 +1,4 @@
 import { Request, Response } from "express";
-import { ResultSetHeader } from "mysql2";
-import db from "../config/db";
 import { determineWinner } from "../services/determine-winner";
 import { CardDeckArrayType } from "../types/types";
 
@@ -19,6 +17,6 @@ export const determineWinnerController = async (
     res.send({ handRanks });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Serverfeil" });
+    res.status(500).json({ message: "Server error" });
   }
 };

@@ -1,3 +1,5 @@
+import { RowDataPacket } from "mysql2";
+
 export type SuitsType = Array<{
   suit: string;
   symbol: string;
@@ -29,3 +31,12 @@ export type WinnerType = {
   rank: number;
   cards: CardDeckType;
 };
+
+export interface HandsRow extends RowDataPacket {
+  id: number;
+  created_at: string;
+  hand_description: string;
+  card: string;
+  value: number;
+  suit: string;
+}

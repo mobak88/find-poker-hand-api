@@ -32,6 +32,6 @@ export const dealCardsController = async (req: Request, res: Response) => {
     res.send({ dealtCards, hand: evaluatedHand.hand });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Serverfeil" });
+    res.status(500).json({ message: "Server error" });
   }
 };
