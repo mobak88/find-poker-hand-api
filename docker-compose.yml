@@ -1,0 +1,45 @@
+services:
+  mysqldb:
+    image: mysql
+    container_name: finn_hand_db
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - auth-networks
+
+  server:
+    build:
+      context: .
+      target: development
+    container_name: finn_pokerhand_api
+    depends_on:
+      - mysqldb
+    env_file: ./.env
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    networks:
+      - auth-networks
+    command: npm run start:dev
+
+networks:
+  auth-networks:
+    driver: bridge
+
+volumes:
+  db:

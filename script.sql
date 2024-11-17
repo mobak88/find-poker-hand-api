@@ -1,6 +1,6 @@
-CREATE DATABASE finn_hand_app;
+CREATE DATABASE IF NOT EXISTS finn_hand_db;
 
-USE finn_hand_app;
+USE finn_hand_db;
 
 CREATE TABLE hands (
 	id INT AUTO_INCREMENT PRIMARY KEY,
