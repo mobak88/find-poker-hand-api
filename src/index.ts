@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { createCardDeck } from "./utils/create-cards";
 import { cards, suits } from "./variables/card-deck";
 import pokerHandRoutes from "./routes/poker-hand-routes";
+import path from "path";
 
 dotenv.config();
 
@@ -15,6 +16,8 @@ export const cardDeck = createCardDeck(suits, cards);
 app.use(express.json());
 
 app.use("/api", pokerHandRoutes);
+
+app.use("/website", express.static(path.join(__dirname, "public")));
 
 app.listen(port, () => {
   console.log(`App running on: http://${url}:${port}`);
