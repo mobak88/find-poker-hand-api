@@ -82,7 +82,7 @@ yarn test
 
 #### Find winner example
 
-Privde an array of two or more hands to determine the winner(s)
+Provide an array of two or more hands to determine the winner(s)
 
 ```
 {
