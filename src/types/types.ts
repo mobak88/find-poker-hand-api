@@ -32,6 +32,13 @@ export type WinnerType = {
   cards: CardDeckType;
 };
 
+export type GroupedHandType = {
+  id: number;
+  hand_description: string;
+  created_at: string;
+  cards: CardDeckType;
+};
+
 export interface HandsRow extends RowDataPacket {
   id: number;
   created_at: string;
