@@ -3,14 +3,14 @@ services:
     image: mysql
     container_name: finn_hand_db
     restart: unless-stopped
-    env_file: ./.env
+    env_file: ./.env.docker
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DATABASE}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - ./script.sql:/docker-entrypoint-initdb.d/script.sql
 
@@ -29,7 +29,7 @@ services:
     container_name: finn_pokerhand_api
     depends_on:
       - mysqldb
-    env_file: ./.env
+    env_file: ./.env.docker
     restart: unless-stopped
     ports:
       - "3000:3000"
